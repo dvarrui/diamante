@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require "debug"
+require_relative "lib/diamante/cli"
+CLI.start(ARGV)
