@@ -7,7 +7,7 @@ module Diamante
   class Error < StandardError; end
   # Your code goes here...
 
-  def self.show(filename)
-    Show.new(filename).call
+  def self.show(filepath)
+    Show.call(filepath)
   end
 end
