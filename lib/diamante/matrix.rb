@@ -14,7 +14,6 @@ class Matrix
     @eligible_chars = "ª\|@·#$~%&/\¿¸^*¨;•:·_-+'.,".chars + ['.', ' ']
     @height, @width = `stty size`.split.map { _1.to_i }
 
-    # filename = File.join(File.dirname(__FILE__), "title.txt")
     @title = File.readlines(filepath)
   end
 
@@ -26,7 +25,7 @@ class Matrix
       chars[rand(@width)] = 0
 
       chars.each do |col, row|
-        chars[col] += 1 # increment row value
+        chars[col] += 1
         print_random_at(row, col)
       end
       print_char_at_ramdom("•")
@@ -39,6 +38,8 @@ class Matrix
 
   def clear_screen = -> { puts "\033[2J" }
 
+  def cursor_at_home = -> { print "\033[0;0H" }
+
   def print_random_at(row, col) 
     print "\033[#{row + 1};#{col}H" # move cursor down (row + 1)
     # print random character
@@ -47,7 +48,7 @@ class Matrix
     else
       print @pastel.green.bold("#{@eligible_chars.sample} ")
     end
-    print "\033[0;0H" # move cursor to top/left position
+    cursor_at_home
   end
 
   def print_text_at(row, col, text) 
