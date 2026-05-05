@@ -6,21 +6,23 @@
 # Amarillo	\e[33m	puts "\e[33mEste texto es amarillo\e[0m"
 # Reset	\e[0m	(Obligatorio para volver al color normal)
 
-class Color
-  RESET = "\e[0m"
-  RED = "\e[31m"
-  GREEN = "\e[32m"
-  YELLOW = "\e[33m"
+module ANSI
+  CODES = {
+    reset: "\e[0m",
+    red: "\e[31m",
+    green: "\e[32m",
+    yellow: "\e[33m"
+  }
 
-  def green(text)
-    "#{GREEN}#{text}#{RESET}"
+  def self.green(text)
+    "#{CODES[:green]}#{text}#{CODES[:reset}"
   end
 
   def red(text)
-    "#{RED}#{text}#{RESET}"
+    "#{CODES[:red]}#{text}#{CODES[:reset}"
   end
 
   def yellow(text)
-    "#{YELLOW}#{text}#{RESET}"
+    "#{CODES[:yellow]}#{text}#{CODES[:reset}"
   end
 end
