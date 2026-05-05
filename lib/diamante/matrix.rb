@@ -1,8 +1,18 @@
 #!/usr/bin/env ruby
 require "pastel"
 
+def reset_cursor
+  print "\e[H" # Lleva el cursor arriba a la izquierda
+end
+
+def clear_screen
+  print "\e[2J\e[H"
+end
+
+
 trap("SIGINT") do
-  puts "\033[2J"
+  # puts "\033[2J"
+  clear_screen
 
   puts "Morpheus: 'Follow me.'"
   exit!
@@ -18,7 +28,7 @@ class Matrix
   end
 
   def call
-    clear_screen.call
+    clear_screen
 
     chars = {}
     loop do
@@ -36,10 +46,6 @@ class Matrix
 
   private
 
-  def clear_screen = -> { puts "\033[2J" }
-
-  def cursor_at_home = -> { print "\033[0;0H" }
-
   def print_random_at(row, col) 
     print "\033[#{row + 1};#{col}H" # move cursor down (row + 1)
     # print random character
@@ -48,7 +54,7 @@ class Matrix
     else
       print @pastel.green.bold("#{@eligible_chars.sample} ")
     end
-    cursor_at_home
+    reset_cursor
   end
 
   def print_text_at(row, col, text) 
