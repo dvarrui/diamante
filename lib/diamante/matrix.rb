@@ -1,18 +1,10 @@
 #!/usr/bin/env ruby
 require "pastel"
 
-def reset_cursor
-  print "\e[H" # Lleva el cursor arriba a la izquierda
-end
-
-def clear_screen
-  print "\e[2J\e[H"
-end
-
-
 trap("SIGINT") do
   # puts "\033[2J"
-  clear_screen
+  # clear_screen
+  print "\e[2J\e[H"
 
   puts "Morpheus: 'Follow me.'"
   exit!
@@ -46,6 +38,14 @@ class Matrix
 
   private
 
+  def reset_cursor
+    print "\e[H" # Lleva el cursor arriba a la izquierda
+  end
+  
+  def clear_screen
+    print "\e[2J\e[H"
+  end
+  
   def print_random_at(row, col) 
     print "\033[#{row + 1};#{col}H" # move cursor down (row + 1)
     # print random character
