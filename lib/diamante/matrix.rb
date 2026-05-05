@@ -1,21 +1,12 @@
-#!/usr/bin/env ruby
 require "pastel"
 
-trap("SIGINT") do
-  # puts "\033[2J"
-  # clear_screen
-  print "\e[2J\e[H"
-
-  puts "Morpheus: 'Follow me.'"
-  exit!
-end
-
 class Matrix
-  def initialize(filepath)
+  def initialize(header, filepath)
     @pastel = Pastel.new
     @eligible_chars = "ª\|@·#$~%&/\¿¸^*¨;•:·_-+'.,".chars + ['.', ' ']
     @height, @width = `stty size`.split.map { _1.to_i }
 
+    @header = header
     @title = File.readlines(filepath)
   end
 
@@ -84,12 +75,8 @@ class Matrix
       print "\033[0;0H"
     end
 
-    header = " Agile & Craftsmanship Canarias "
     hour = " #{Time.now} "
-    print_text_at(1, @width - header.length - 1, header)
+    print_text_at(1, @width - @header.length - 1, @header)
     print_text_at(2, @width - hour.length - 1, hour)
   end
 end
-
-matrix = Matrix.new("examples/matrix/title.txt")
-matrix.call
