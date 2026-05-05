@@ -1,12 +1,14 @@
 #!/usr/bin/env ruby
 require_relative "lib/diamante/matrix"
+require "debug"
+
+matrix = Matrix.new("examples/matrix/config.yaml")
 
 trap("SIGINT") do
   print "\e[2J\e[H"
 
-  puts "Morpheus: 'Follow me.'"
+  puts matrix.bye
   exit!
 end
 
-matrix = Matrix.new(" Agile & Craftsmanship Canarias ", "examples/matrix/title.txt")
 matrix.call

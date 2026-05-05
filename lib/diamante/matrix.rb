@@ -1,13 +1,18 @@
 require "pastel"
+require "yaml"
 
 class Matrix
-  def initialize(header, filepath)
+  attr_reader :bye
+
+  def initialize(configfile)
+    data = YAML.load(File.read configfile)
     @pastel = Pastel.new
     @eligible_chars = "ª\|@·#$~%&/\¿¸^*¨;•:·_-+'.,".chars + ['.', ' ']
     @height, @width = `stty size`.split.map { _1.to_i }
 
-    @header = header
-    @title = File.readlines(filepath)
+    @header = data[:header]
+    @title = File.readlines(data[:filepath])
+    @bye = data[:bye]
   end
 
   def call
