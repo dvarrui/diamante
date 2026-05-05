@@ -20,12 +20,8 @@ module Matrix
           case key
           when :up    then puts "↑ Arriba"
           when :down  then puts "↓ Abajo"
-          when :left  then
-            index -= 1
-            @slider.set_index index
-          when :right then
-            index += 1
-            @slider.set_index index
+          when :left  then @slider.prev
+          when :right then @slider.next
           when :quit  then break
           end
           @slider.show          

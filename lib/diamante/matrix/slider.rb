@@ -12,10 +12,11 @@ module Matrix
       @eligible_chars = "ª\|@·#$~%&/\¿¸^*¨;•:·_-+'.,".chars + ['.', ' ']
       @height, @width = `stty size`.split.map { _1.to_i }
   
-      @header = " #{data[:header]} "
-      @bye = data[:bye]
+      @header = data[:header]
       @files = Dir.glob(data[:files])
-      set_index 0
+      @index = 0
+      load_slide
+      @bye = data[:bye]
     end
   
     def game_loop
@@ -36,13 +37,18 @@ module Matrix
       show_slide_content
     end
 
-    def set_index(index)
-      @index = index
-      @chars = {}
-      clear_screen  
-      @slide = File.readlines(@files[@index])
+    def next
+      return unless @index + 1 < @files.size
+      @index += 1
+      load_slide
     end
-  
+
+    def prev
+      return unless @index > 0
+      @index -= 1
+      load_slide
+    end
+      
     private
   
     def clear_screen
@@ -52,7 +58,13 @@ module Matrix
     def move_cursor(row, col)
       print "\033[#{row};#{col}H"
     end
-  
+
+    def load_slide
+      @chars = {}
+      clear_screen  
+      @slide = File.readlines(@files[@index])
+    end
+
     def reset_cursor
       print "\e[H"
     end
@@ -95,11 +107,12 @@ module Matrix
         print "\033[0;0H"
       end
   
-      print_text_at(1, @width - @header.length - 1, @header)
-      text = " #{@index + 1}/#{@files.count} "
+      text = " #{@header} (#{@index + 1}/#{@files.count}) "
+      print_text_at(1, @width - text.length - 1, text)
+      text = " q|→|← "
       print_text_at(@height - 2, 1, text)
-      hour = " #{Time.now} "
-      print_text_at(@height - 2, @width - hour.length - 1, hour)
+      text = " #{Time.now} "
+      print_text_at(@height - 2, @width - text.length - 1, text)
     end
   end  
 end
