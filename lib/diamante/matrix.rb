@@ -27,23 +27,27 @@ class Matrix
         print_random_at(row, col)
       end
       print_char_at_ramdom("•")
-      title
+      show_slide_content
       sleep 0.1
     end
   end
 
   private
 
+  def clear_screen
+    print "\e[2J\e[H"
+  end
+
+  def move_cursor(row, col)
+    print "\033[#{row};#{col}H"
+  end
+
   def reset_cursor
     print "\e[H" # Lleva el cursor arriba a la izquierda
   end
   
-  def clear_screen
-    print "\e[2J\e[H"
-  end
-  
   def print_random_at(row, col) 
-    print "\033[#{row + 1};#{col}H" # move cursor down (row + 1)
+    move_cursor(row + 1, col)
     # print random character
     if rand > 0.3
       print @pastel.green("#{@eligible_chars.sample} ")
@@ -54,9 +58,9 @@ class Matrix
   end
 
   def print_text_at(row, col, text) 
-    print "\033[#{row + 1};#{col}H"
+    move_cursor(row + 1, col)
     print @pastel.white(text)
-    print "\033[0;0H"
+    reset_cursor
   end
 
   def print_char_at_ramdom(char)
@@ -64,12 +68,12 @@ class Matrix
 
     row = rand(@height)
     col = rand(@width)
-    print "\033[#{row + 1};#{col}H"
+    move_cursor(row + 1, col)
     print @pastel.white(char)
-    print "\033[0;0H"
+    reset_cursor
   end
 
-  def title
+  def show_slide_content
     lines = @title
     row = (@height / 2) - (lines.size / 2)
     col = (@width / 2) - (lines.first.length / 2)
