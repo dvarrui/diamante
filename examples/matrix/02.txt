@@ -1,0 +1,10 @@
+
+Los slides se guardan en ficheros TXT 
+
+```
+$ tree examples/matrix 
+examples/matrix
+├── 01.txt
+├── 02.txt
+└── config.yaml
+```
