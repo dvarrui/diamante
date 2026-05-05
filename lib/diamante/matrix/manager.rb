@@ -12,6 +12,7 @@ module Matrix
     end
 
     def call
+      index = 0
       begin
         loop do
           key = get_input
@@ -19,8 +20,12 @@ module Matrix
           case key
           when :up    then puts "↑ Arriba"
           when :down  then puts "↓ Abajo"
-          when :left  then puts "← Izquierda"
-          when :right then puts "→ Derecha"
+          when :left  then
+            index -= 1
+            @slider.set_index index
+          when :right then
+            index += 1
+            @slider.set_index index
           when :quit  then break
           end
           @slider.show          

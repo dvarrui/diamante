@@ -4,7 +4,7 @@ require "yaml"
 module Matrix
   class Slider
     attr_reader :bye
-    attr_accessor :index
+    attr_reader :index
   
     def initialize(configfile)
       data = YAML.load(File.read configfile)
@@ -13,13 +13,9 @@ module Matrix
       @height, @width = `stty size`.split.map { _1.to_i }
   
       @header = " #{data[:header]} "
-      @index = 0
-      @files = Dir.glob(data[:files])
-      @slide = File.readlines(@files[@index])
       @bye = data[:bye]
-
-      clear_screen  
-      @chars = {}
+      @files = Dir.glob(data[:files])
+      set_index 0
     end
   
     def game_loop
@@ -38,6 +34,13 @@ module Matrix
       end
       print_char_at_ramdom("•")
       show_slide_content
+    end
+
+    def set_index(index)
+      @index = index
+      @chars = {}
+      clear_screen  
+      @slide = File.readlines(@files[@index])
     end
   
     private
@@ -83,7 +86,8 @@ module Matrix
     def show_slide_content
       lines = @slide
       row = (@height / 2) - (lines.size / 2)
-      col = (@width / 2) - (lines.first.length / 2)
+      max_with = lines.map(&:length).max
+      col = (@width / 2) - (max_with / 2)
     
       lines.each_with_index do |text, index|
         print "\033[#{row + 1 + index};#{col}H"
