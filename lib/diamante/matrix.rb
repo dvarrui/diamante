@@ -10,8 +10,10 @@ class Matrix
     @eligible_chars = "ª\|@·#$~%&/\¿¸^*¨;•:·_-+'.,".chars + ['.', ' ']
     @height, @width = `stty size`.split.map { _1.to_i }
 
-    @header = data[:header]
-    @title = File.readlines(data[:filepath])
+    @header = " #{data[:header]} "
+    @index = 0
+    @files = Dir.glob(data[:files])
+    @slide = File.readlines(@files[@index])
     @bye = data[:bye]
   end
 
@@ -74,7 +76,7 @@ class Matrix
   end
 
   def show_slide_content
-    lines = @title
+    lines = @slide
     row = (@height / 2) - (lines.size / 2)
     col = (@width / 2) - (lines.first.length / 2)
   
@@ -84,8 +86,10 @@ class Matrix
       print "\033[0;0H"
     end
 
-    hour = " #{Time.now} "
     print_text_at(1, @width - @header.length - 1, @header)
-    print_text_at(2, @width - hour.length - 1, hour)
+    text = " #{@index + 1}/#{@files.count} "
+    print_text_at(@height - 2, 1, text)
+    hour = " #{Time.now} "
+    print_text_at(@height - 2, @width - hour.length - 1, hour)
   end
 end
