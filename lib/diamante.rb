@@ -10,7 +10,7 @@ module Diamante
       Markdown.new(filepath).show
     elsif filepath.end_with? ".yaml"
       require_relative "diamante/game"
-      Game.new(filepath).run
+      Game.new(filepath).game_loop
     else
       warn "[ERROR] Unknown type! (#{filepath})"
       exit 1

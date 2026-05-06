@@ -21,7 +21,7 @@ module Diamante
         @bye = data[:bye]
       end
       
-      def show
+      def render
         @chars[rand(@width)] = 0
     
         @chars.each do |col, row|
