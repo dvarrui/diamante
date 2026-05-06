@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "pastel"
 require_relative "../ansi"
 require_relative "slides"

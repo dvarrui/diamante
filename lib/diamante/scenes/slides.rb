@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "pastel"
 require "yaml"
 require_relative "../ansi"
