@@ -10,9 +10,6 @@ module Diamante
     def initialize(configfile)
       @term = ANSI.new
       @config = Config.new(configfile)
-      @scenes = {}
-      @scene_slides = Scene::Slides.new(@config)
-      @scene_ui = Scene::UI.new(@config[:header], @scene_slides)
     end
 
     def game_loop
@@ -33,6 +30,12 @@ module Diamante
 
     def init
       ANSI.set_raw_mode
+      scene2 = Scene::Slides.new(@config)
+      scene3 = Scene::UI.new(@config[:header], scene2)
+      @scenes = {
+        slides: scene2,
+        ui: scene3
+      }
     end
 
     def process
@@ -41,15 +44,14 @@ module Diamante
       case key
       when :up    then puts "↑ Arriba"
       when :down  then puts "↓ Abajo"
-      when :left  then @scene_slides.prev
-      when :right then @scene_slides.next
+      when :left  then @scenes[:slides].prev
+      when :right then @scenes[:slides].next
       when :quit  then deinit
       end
     end
 
     def render
-      @scene_slides.render
-      @scene_ui.render
+      @scenes.each_value { _1.render }
     end
 
     def deinit
