@@ -2,13 +2,10 @@
 require_relative "lib/diamante/matrix/manager"
 require "debug"
 
-# matrix = Matrix::Matrix.new(ARGV.first)
-# trap("SIGINT") do
-#   print "\e[2J\e[H"
-  # puts matrix.bye
-  # exit!
-# end
-# matrix.game_loop
+if ARGV.size < 1
+  puts "Usage: #{$0} PATH/TO/CONFIG.yaml"
+  exit 1
+end
 
 manager = Matrix::Manager.new(ARGV.first)
 manager.call
