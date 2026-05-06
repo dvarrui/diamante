@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
-# $LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
-# require "diamante/cli"
-require_relative "lib/diamante/cli"
+$LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
+require "diamante/cli"
+# require_relative "lib/diamante/cli"
 # require "debug"
 
 # Start command line interface
