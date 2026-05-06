@@ -1,12 +1,13 @@
 
 require_relative "ansi"
-require_relative "slider/matrix"
+require_relative "scenes/matrix"
 
 module Diamante
   class Game
     def initialize(configfile)
+      @term = ANSI.new
       @scene = Slider::Matrix.new(configfile)
-      ANSI.set_terminal_raw_mode
+      @term.set_raw_mode
     end
 
     def game_loop
@@ -17,14 +18,14 @@ module Diamante
           sleep 0.1
         end
       ensure
-        ANSI.set_terminal_cooked_mode
+        @term.set_cooked_mode
       end
     end
 
     private
 
     def process
-      key = ANSI.pressed_key
+      key = @term.pressed_key
           
       case key
       when :up    then puts "↑ Arriba"
@@ -40,7 +41,7 @@ module Diamante
     end
 
     def deinit
-      ANSI.set_terminal_cooked_mode
+      @term.set_cooked_mode
       exit 0
     end
   end
