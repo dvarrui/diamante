@@ -44,50 +44,30 @@ module Diamante
         load_slide
       end
         
-      private
-    
-      def clear_screen
-        print "\e[2J\e[H"
-      end
-    
-      def move_cursor(row, col)
-        print "\033[#{row};#{col}H"
-      end
+      private    
   
       def load_slide
         @chars = {}
-        clear_screen  
+        ANSI.clear_screen  
         @slide = File.readlines(@files[@index])
       end
-  
-      def reset_cursor
-        print "\e[H"
-      end
-      
+        
       def print_random_char_at(row, col) 
-        move_cursor(row + 1, col)
         if rand > 0.3
-          print @pastel.green("#{@eligible_chars.sample} ")
+          text = @pastel.green("#{@eligible_chars.sample} ")
         else
-          print @pastel.green.bold("#{@eligible_chars.sample} ")
+          text = @pastel.green.bold("#{@eligible_chars.sample} ")
         end
-        reset_cursor
+        ANSI.print_text_at(row + 1, col, text)
       end
-    
-      def print_text_at(row, col, text) 
-        move_cursor(row + 1, col)
-        print @pastel.white(text)
-        reset_cursor
-      end
-    
+        
       def print_char_at_ramdom(char)
         return if rand > 0.2
     
         row = rand(@height)
         col = rand(@width)
-        move_cursor(row + 1, col)
-        print @pastel.white(char)
-        reset_cursor
+        text = @pastel.white(char)
+        ANSI.print_text_at(row + 1, col, text)
       end
     
       def show_slide_content
@@ -97,17 +77,16 @@ module Diamante
         col = (@width / 2) - (max_with / 2)
       
         lines.each_with_index do |text, index|
-          print "\033[#{row + 1 + index};#{col}H"
-          print @pastel.white.bold(text)
-          print "\033[0;0H"
+          text = @pastel.white.bold(text)
+          ANSI.print_text_at(row + 1 + index, col,text)
         end
     
         text = " #{@header} (#{@index + 1}/#{@files.count}) "
-        print_text_at(1, @width - text.length - 1, text)
+        ANSI.print_text_at(1, @width - text.length - 1, text)
         text = " q|→|← "
-        print_text_at(@height - 2, 1, text)
+        ANSI.print_text_at(@height - 2, 1, text)
         text = " #{Time.now} "
-        print_text_at(@height - 2, @width - text.length - 1, text)
+        ANSI.print_text_at(@height - 2, @width - text.length - 1, text)
       end
     end  
   end
