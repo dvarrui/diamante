@@ -46,6 +46,8 @@ module Diamante
     end
 
     def deinit
+      ANSI.clear_screen
+      # puts bye
       ANSI.set_cooked_mode
       exit 0
     end

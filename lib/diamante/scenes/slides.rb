@@ -5,22 +5,27 @@ require_relative "../ansi"
 module Diamante
   module Scene
     class Slides
-      attr_reader :bye
       attr_reader :index
     
       def initialize(configfile)
         data = YAML.load(File.read configfile)
         @pastel = Pastel.new
         @eligible_chars = "ª\|@·#$~%&/\¿¸^*¨;•:·_-+'.,".chars + ['.', ' ']
-        @height, @width = `stty size`.split.map { _1.to_i }
+        #@height, @width = `stty size`.split.map { _1.to_i }
+        @term = ANSI.new
+        @height = @term.height
+        @width = @term.width
 
         @header = data[:header]
         @files = Dir.glob(data[:files])
         @index = 0
         load_slide
-        @bye = data[:bye]
       end
       
+      def count
+        @files.count
+      end
+
       def render
         @chars[rand(@width)] = 0
     
