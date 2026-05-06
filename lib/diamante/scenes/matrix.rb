@@ -12,8 +12,8 @@ module Diamante
         data = YAML.load(File.read configfile)
         @pastel = Pastel.new
         @eligible_chars = "ª\|@·#$~%&/\¿¸^*¨;•:·_-+'.,".chars + ['.', ' ']
-        @term = ANSI.new
-    
+        @height, @width = `stty size`.split.map { _1.to_i }
+
         @header = data[:header]
         @files = Dir.glob(data[:files])
         @index = 0
@@ -44,11 +44,11 @@ module Diamante
         load_slide
       end
         
-      private    
+      private 
   
       def load_slide
         @chars = {}
-        @term.clear_screen  
+        ANSI.clear_screen  
         @slide = File.readlines(@files[@index])
       end
         
@@ -58,7 +58,7 @@ module Diamante
         else
           text = @pastel.green.bold("#{@eligible_chars.sample} ")
         end
-        @term.print_text_at(row + 1, col, text)
+        ANSI.print_text_at(row + 1, col, text)
       end
         
       def print_char_at_ramdom(char)
@@ -67,26 +67,26 @@ module Diamante
         row = rand(@height)
         col = rand(@width)
         text = @pastel.white(char)
-        @term.print_text_at(row + 1, col, text)
+        ANSI.print_text_at(row + 1, col, text)
       end
     
       def show_slide_content
         lines = @slide
-        row = (@term.height / 2) - (lines.size / 2)
+        row = (@height / 2) - (lines.size / 2)
         max_with = lines.map(&:length).max
-        col = (@term.width / 2) - (max_with / 2)
+        col = (@width / 2) - (max_with / 2)
       
         lines.each_with_index do |text, index|
           text = @pastel.white.bold(text)
-          @term.print_text_at(row + 1 + index, col,text)
+          ANSI.print_text_at(row + 1 + index, col,text)
         end
     
         text = " #{@header} (#{@index + 1}/#{@files.count}) "
-        @term.print_text_at(1, @term.width - text.length - 1, text)
+        ANSI.print_text_at(1, @width - text.length - 1, text)
         text = " q|→|← "
-        @term.print_text_at(@term.height - 2, 1, text)
+        ANSI.print_text_at(@height - 2, 1, text)
         text = " #{Time.now} "
-        @term.print_text_at(@term.height - 2, @term.width - text.length - 1, text)
+        ANSI.print_text_at(@height - 2, @width - text.length - 1, text)
       end
     end  
   end

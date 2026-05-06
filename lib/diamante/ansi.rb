@@ -34,29 +34,29 @@ class ANSI
     print_with_color(:yellow, text)
   end
 
-  def print_wiht_color(color, text)
+  def print_with_color(color, text)
     "#{COLORS[color]}#{text}#{RESET}"
   end
 
-  def clear_screen
-    print CLEAR_SCREEN
+  def self.clear_screen
+    print "\e[2J\e[H"
   end
 
-  def move_cursor(row, col)
+  def self.move_cursor(row, col)
     print "\033[#{row};#{col}H"
   end
 
-  def reset_cursor
-    print RESET
+  def self.reset_cursor
+    print "\e[0m"
   end
 
-  def print_text_at(row, col, text) 
-    move_cursor(row + 1, col)
+  def self.print_text_at(row, col, text) 
+    print "\033[#{row + 1};#{col}H"
     print text
-    reset_cursor
+    print "\e[0m"
   end
 
-  def pressed_key
+  def self.pressed_key
     char = STDIN.read_nonblock(3) rescue nil
     return nil unless char
   
@@ -70,12 +70,12 @@ class ANSI
     end
   end
 
-  def set_raw_mode
+  def self.set_raw_mode
     STDIN.echo = false
     STDIN.raw!
   end
 
-  def set_cooked_mode
+  def self.set_cooked_mode
     STDIN.cooked!
     STDIN.echo = true
   end

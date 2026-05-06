@@ -10,23 +10,27 @@ module Diamante
     end
 
     def game_loop
-      @term.set_raw_mode
       begin
+        init
         loop do
           process
           render
           sleep 0.1
         end
+        deinit
       ensure
-        @term.set_cooked_mode
+        ANSI.set_cooked_mode
       end
-      @term.set_cooked_mode
     end
 
     private
 
+    def init
+      ANSI.set_raw_mode
+    end
+
     def process
-      key = @term.pressed_key
+      key = ANSI.pressed_key
           
       case key
       when :up    then puts "↑ Arriba"
@@ -42,7 +46,7 @@ module Diamante
     end
 
     def deinit
-      @term.set_cooked_mode
+      ANSI.set_cooked_mode
       exit 0
     end
   end
