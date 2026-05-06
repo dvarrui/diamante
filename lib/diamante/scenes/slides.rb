@@ -16,7 +16,6 @@ module Diamante
         @height = @term.height
         @width = @term.width
 
-        @header = data[:header]
         @files = Dir.glob(data[:files])
         @index = 0
         load_slide
@@ -85,13 +84,6 @@ module Diamante
           text = @pastel.white.bold(text)
           ANSI.print_text_at(row + 1 + index, col,text)
         end
-    
-        text = " #{@header} (#{@index + 1}/#{@files.count}) "
-        ANSI.print_text_at(1, @width - text.length - 1, text)
-        text = " q|→|← "
-        ANSI.print_text_at(@height - 2, 1, text)
-        text = " #{Time.now} "
-        ANSI.print_text_at(@height - 2, @width - text.length - 1, text)
       end
     end  
   end
