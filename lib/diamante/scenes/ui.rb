@@ -1,5 +1,6 @@
 require "pastel"
 require_relative "../ansi"
+require_relative "slides"
 
 module Diamante
   module Scene
@@ -7,11 +8,10 @@ module Diamante
       attr_reader :bye
       attr_reader :index
 
-      def initialize(configfile)
+      def initialize(header, slides, bye)
         @pastel = Pastel.new
     
-        @header = data[:header]
-        @files = Dir.glob(data[:files])
+        @header = header
         @index = 0
         load_slide
         @bye = data[:bye]

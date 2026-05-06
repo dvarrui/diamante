@@ -3,8 +3,8 @@ require "yaml"
 require_relative "../ansi"
 
 module Diamante
-  module Slider
-    class Matrix
+  module Scene
+    class Slides
       attr_reader :bye
       attr_reader :index
     

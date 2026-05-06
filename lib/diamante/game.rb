@@ -1,12 +1,12 @@
 
 require_relative "ansi"
-require_relative "scenes/matrix"
+require_relative "scenes/slides"
 
 module Diamante
   class Game
     def initialize(configfile)
       @term = ANSI.new
-      @scene = Slider::Matrix.new(configfile)
+      @scene = Scene::Slides.new(configfile)
     end
 
     def game_loop
