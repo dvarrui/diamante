@@ -19,14 +19,16 @@ module Diamante
       
       def render
         text = " #{@header} (#{@slides.index + 1}/#{@slides.count}) "
+        col = @width - text.length - 1
         text = @pastel.white(text)
-        ANSI.print_text_at(1, @width - text.length - 1, text)
+        ANSI.print_text_at(1, col, text)
         text = " q|→|← "
         text = @pastel.white(text)
         ANSI.print_text_at(@height - 2, 1, text)
         text = " #{Time.now} "
+        col = @width - text.length - 1
         text = @pastel.white(text)
-        ANSI.print_text_at(@height - 2, @width - text.length - 1, text)
+        ANSI.print_text_at(@height - 2, col, text)
       end
     end  
   end
