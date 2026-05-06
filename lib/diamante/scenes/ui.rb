@@ -9,7 +9,6 @@ module Diamante
 
       def initialize(configfile)
         @pastel = Pastel.new
-        @height, @width = `stty size`.split.map { _1.to_i }
     
         @header = data[:header]
         @files = Dir.glob(data[:files])

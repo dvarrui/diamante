@@ -7,10 +7,10 @@ module Diamante
     def initialize(configfile)
       @term = ANSI.new
       @scene = Slider::Matrix.new(configfile)
-      @term.set_raw_mode
     end
 
     def game_loop
+      @term.set_raw_mode
       begin
         loop do
           process
@@ -20,6 +20,7 @@ module Diamante
       ensure
         @term.set_cooked_mode
       end
+      @term.set_cooked_mode
     end
 
     private
