@@ -1,6 +1,6 @@
 # Diamante
 
-Mostrar documentos Markdown como una presentación de diapositivas en el terminal.
+Presentar diapositivas en el temrinal.
 
 ## Instalación
 
@@ -9,14 +9,27 @@ Mostrar documentos Markdown como una presentación de diapositivas en el termina
 
 ## Modo de uso
 
-* Crear un documento Markdown con el contenido de las diapositivas.
+* Crear una carpeta con el fichero de configuración YAML y las diapositivas en ficheros de texto. [Ver ejemplo](./examples/yaml/).
 * Abrir un terminal.
-* Ejecutar `diamante PATH/TO/MARKDOWN`.
-
+* Ejecutar `diamante show PATH/TO/CONFIG.yaml`.
 
 ## Características
 
-* Cada `header` Markdown define el comienzo de una diapositiva.
+* El contenido de cada diapositiva va en un fichero de texto separado.
+* El fichero de configuración tiene el siguiente formato:
+```yaml
+:header: "Gema diamante"
+:files: "examples/yaml/*.txt"
+:bye: "Morpheus: 'Follow me.'"
+```
+
+Significado de los parámetros:
+
+| Parámetro | Descripción |
+| --------- | ----------- |
+| `:header` | Título de la presentación |
+| `:files`  | Ficheros de texto que contienen las diapositivas |
+| `:bye`    | Mensaje de despedida |
 
 ## Contributing
 
