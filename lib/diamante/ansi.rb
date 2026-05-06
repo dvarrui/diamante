@@ -1,3 +1,4 @@
+require "io/console"
 
 # Códigos ANSI de color:
 # Color	Código	Uso en Ruby
@@ -49,4 +50,27 @@ module ANSI
     ANSI.reset_cursor
   end
 
+  def self.pressed_key
+    char = STDIN.read_nonblock(3) rescue nil
+    return nil unless char
+  
+    case char
+    when "\e[A" then :up
+    when "\e[B" then :down
+    when "\e[C" then :right
+    when "\e[D" then :left
+    when "q"    then :quit
+    else char
+    end
+  end
+
+  def self.set_terminal_raw_mode
+    STDIN.echo = false
+    STDIN.raw!
+  end
+
+  def self.set_terminal_cooked_mode
+    STDIN.cooked!
+    STDIN.echo = true
+  end
 end
