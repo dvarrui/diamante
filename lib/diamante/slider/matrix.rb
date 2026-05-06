@@ -1,9 +1,10 @@
 require "pastel"
 require "yaml"
+require_relative "../ansi"
 
 module Diamante
-  module Matrix
-    class Slider
+  module Slider
+    class Matrix
       attr_reader :bye
       attr_reader :index
     
@@ -19,14 +20,7 @@ module Diamante
         load_slide
         @bye = data[:bye]
       end
-    
-      def game_loop
-        loop do
-          show
-          sleep 0.1
-        end
-      end
-  
+      
       def show
         @chars[rand(@width)] = 0
     

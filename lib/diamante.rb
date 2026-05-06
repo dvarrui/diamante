@@ -5,12 +5,15 @@ require_relative "diamante/version"
 
 module Diamante
 
-  def self.show_from_markdown(filepath)
-    Markdown.new(filepath).show
-  end
-
-  def self.show_from_yaml(filepath)
-    require_relative "diamante/manager"
-    Manager.new(filepath).call
+  def self.show(filepath)
+    if filepath.end_with? ".md"
+      Markdown.new(filepath).show
+    elsif filepath.end_with? ".yaml"
+      require_relative "diamante/game"
+      Game.new(filepath).run
+    else
+      warn "[ERROR] Unknown type! (#{filepath})"
+      exit 1
+    end
   end
 end

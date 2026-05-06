@@ -15,14 +15,18 @@ module ANSI
   }
 
   def self.green(text)
-    "#{CODES[:green]}#{text}#{CODES[:reset}"
+    self.color(:green, text)
   end
 
-  def red(text)
-    "#{CODES[:red]}#{text}#{CODES[:reset}"
+  def self.red(text)
+    self.color(:red, text)
   end
 
-  def yellow(text)
-    "#{CODES[:yellow]}#{text}#{CODES[:reset}"
+  def self.yellow(text)
+    self.color(:yellow, text)
+  end
+
+  def self.color(color, text)
+    "#{CODES[color]}#{text}#{CODES[:reset]}"
   end
 end

@@ -1,17 +1,17 @@
 
 require 'io/console'
-require_relative "matrix/slider"
+require_relative "slider/matrix"
 
 module Diamante
-  class Manager
-    STDIN.echo = false
-    STDIN.raw!
-
+  class Game
     def initialize(configfile)
-      @slider = Matrix::Slider.new(configfile)
+      @slider = Slider::Matrix.new(configfile)
+
+      STDIN.echo = false
+      STDIN.raw!
     end
 
-    def call
+    def run
       index = 0
       begin
         loop do
@@ -48,8 +48,7 @@ module Diamante
       when "q"    then :quit
       else char
       end
-    end
-    
+    end    
   end
 end
 
