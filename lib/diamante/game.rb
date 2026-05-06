@@ -1,13 +1,18 @@
 # frozen_string_literal: true
 
 require_relative "ansi"
+require_relative "config"
+require_relative "scenes/ui"
 require_relative "scenes/slides"
 
 module Diamante
   class Game
     def initialize(configfile)
       @term = ANSI.new
-      @scene = Scene::Slides.new(configfile)
+      @config = Config.new(configfile)
+      @scenes = {}
+      @scene_slides = Scene::Slides.new(@config)
+      @scene_ui = Scene::UI.new(@config[:header], @scene_slides)
     end
 
     def game_loop
@@ -36,14 +41,15 @@ module Diamante
       case key
       when :up    then puts "↑ Arriba"
       when :down  then puts "↓ Abajo"
-      when :left  then @scene.prev
-      when :right then @scene.next
+      when :left  then @scene_slides.prev
+      when :right then @scene_slides.next
       when :quit  then deinit
       end
     end
 
     def render
-      @scene.render
+      @scene_slides.render
+      @scene_ui.render
     end
 
     def deinit

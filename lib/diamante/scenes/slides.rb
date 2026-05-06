@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "pastel"
-require "yaml"
 require_relative "../ansi"
 
 module Diamante
@@ -9,16 +8,15 @@ module Diamante
     class Slides
       attr_reader :index
     
-      def initialize(configfile)
-        data = YAML.load(File.read configfile)
+      def initialize(config)
+        @config = config
         @pastel = Pastel.new
         @eligible_chars = "ª\|@·#$~%&/\¿¸^*¨;•:·_-+'.,".chars + ['.', ' ']
-        #@height, @width = `stty size`.split.map { _1.to_i }
         @term = ANSI.new
         @height = @term.height
         @width = @term.width
 
-        @files = Dir.glob(data[:files])
+        @files = Dir.glob(@config[:files])
         @index = 0
         load_slide
       end

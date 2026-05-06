@@ -14,7 +14,7 @@ module Diamante
         @slides = slides
         @term = ANSI.new
         @height = @term.height
-        @white = @term.width
+        @width = @term.width
       end
       
       def render
