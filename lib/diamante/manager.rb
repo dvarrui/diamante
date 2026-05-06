@@ -1,14 +1,14 @@
 
 require 'io/console'
-require_relative "slider"
+require_relative "matrix/slider"
 
-module Matrix
+module Diamante
   class Manager
     STDIN.echo = false
     STDIN.raw!
 
     def initialize(configfile)
-      @slider = Slider.new(configfile)
+      @slider = Matrix::Slider.new(configfile)
     end
 
     def call

@@ -14,18 +14,20 @@ class CLI < Thor
     exit 0
   end
 
-  map ["s", "-s", "--show"] => "show"
-  option :color, type: :boolean
-  desc "[show] FILEPATH", "Show slides"
-  long_desc <<-LONGDESC
-
-  LONGDESC
-  def show(filename)
-    Diamante::show(filename)
+  map ["y", "-y", "--yaml"] => "yaml"
+  desc "yaml PATH/TO/CONFIG.yaml", "Show slides"
+  def yaml(filename)
+    Diamante::show_from_yaml(filename)
   end
 
+  map ["-md", "--md"] => "md"
+  desc "md FILEPATH", "Show markdown"
+  def md(filename)
+    Diamante::show_from_markdown(filename)
+  end
+  
   def method_missing(method, *_args, &_block)
-    show(method.to_s)
+    yaml(method.to_s)
   end
 
   def respond_to_missing?(_method_name)

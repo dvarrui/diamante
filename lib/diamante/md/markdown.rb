@@ -1,16 +1,20 @@
 require_relative "parser"
 
 module Diamante
-  class Show  
-    def self.call(filepath)
-      sections = Parser.call(filepath)
-      show(sections)
+  class Markdown
+    def initialize(filepath)
+      @filepath = filepath
+      @sections = Parser.call(@filepath)
+    end
+
+    def show
+      show_sections
     end
   
     private
   
-    def self.show(sections)
-      sections.each do |title, blocks|
+    def show_sections
+      @sections.each do |title, blocks|
         puts "--- SECTION: #{title} ---"
         blocks.each do |b|
           case b.type
