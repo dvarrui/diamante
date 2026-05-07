@@ -60,7 +60,8 @@ Significado de los parámetros:
 
 ## Desarrollo
 
-La biblioteca está hecha de forma modular para poder usar distintas escenas de background, foreground o user interface en el futuro.
+* La biblioteca está hecha de forma modular para poder usar distintas escenas de background, foreground o user interface en el futuro.
+* Actualmente no se están usando los parámetros `:scene`, pero en un futuro permitirán definir las escenas a cargar para reproducir la presentación.
 
 ## Contributing
 
