@@ -7,10 +7,10 @@ require_relative "slides"
 module Diamante
   module Scene
     class UI
-      def initialize(header, slides)
+      def initialize(config, slides)
         @pastel = Pastel.new
     
-        @header = header
+        @header = config[:header]
         @slides = slides
         @term = ANSI.new
         @height = @term.height

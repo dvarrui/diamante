@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [0.2.0] - 2026-05-07
+
+- Refactor config file content
+
 ## [0.1.1] - 2026-05-07
 
 - Add license.

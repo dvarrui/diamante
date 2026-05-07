@@ -10,7 +10,8 @@ module Diamante
       def initialize(config)
         @config = config # todo: elegible_chars
         @pastel = Pastel.new
-        @eligible_chars = "ª\|@·#$~%&/\¿¸^*¨;•:·_-+'.,".chars + ['.', ' ']
+        # @eligible_chars = "ª\|@·#$~%&/\¿¸^*¨;•:·_-+'.,".chars + ['.', ' ']
+        @matrix_chars = @config[:chars].chars
         @term = ANSI.new
         @height = @term.height
         @width = @term.width
@@ -31,9 +32,9 @@ module Diamante
           
       def print_random_char_at(row, col) 
         if rand > 0.3
-          text = @pastel.green("#{@eligible_chars.sample} ")
+          text = @pastel.green("#{@matrix_chars.sample} ")
         else
-          text = @pastel.green.bold("#{@eligible_chars.sample} ")
+          text = @pastel.green.bold("#{@matrix_chars.sample} ")
         end
         ANSI.print_text_at(row + 1, col, text)
       end

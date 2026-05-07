@@ -1,3 +1,11 @@
-:header: "Gema diamante"
-:files: "examples/yaml/*.txt"
-:bye: "Morpheus: 'Follow me.'"
+:game:
+  :bye: "Morpheus: 'Follow me.'"  
+:bg:
+  :scene: Matrix
+  :chars: "ª\\|@·#$~%&\/¿¸^*¨;•:·_-+'., ."
+:fg:
+  :scene: Slider
+  :files: "examples/yaml/*.txt"
+:ui:
+  :scene: UI
+  :header: "Gema diamante"

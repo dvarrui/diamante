@@ -31,12 +31,12 @@ module Diamante
 
     def init
       ANSI.set_raw_mode
-      scene1 = Scene::Matrix.new(@config)
-      scene2 = Scene::Slides.new(@config)
-      scene3 = Scene::UI.new(@config[:header], scene2)
+      scene1 = Scene::Matrix.new(@config[:bg])
+      scene2 = Scene::Slides.new(@config[:fg])
+      scene3 = Scene::UI.new(@config[:ui], scene2)
       @scenes = {
         bg: scene1,
-        slides: scene2,
+        fg: scene2,
         ui: scene3
       }
     end
@@ -47,8 +47,8 @@ module Diamante
       case key
       when :up    then puts "↑ Arriba"
       when :down  then puts "↓ Abajo"
-      when :left  then @scenes[:slides].prev
-      when :right then @scenes[:slides].next
+      when :left  then @scenes[:fg].prev
+      when :right then @scenes[:fg].next
       when :quit  then deinit
       end
     end
@@ -61,9 +61,8 @@ module Diamante
     def deinit
       ANSI.clear_screen
       ANSI.set_cooked_mode
-      puts @config[:bye]
+      puts @config[:game][:bye]
       exit 0
     end
   end
 end
-
