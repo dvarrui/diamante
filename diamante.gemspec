@@ -5,11 +5,12 @@ require_relative "lib/diamante/version"
 Gem::Specification.new do |spec|
   spec.name = "diamante"
   spec.version = Diamante::VERSION
+  spec.license = "MPL-2.0"
   spec.authors = ["David Vargas Ruiz"]
   spec.email = ["dvarrui@proton.me"]
 
-  spec.summary = "DIApositivas MArkdown eN el TErminal"
-  spec.description = "DIApositivas MArkdown eN el TErminal"
+  spec.summary = "Presentar diapositivas en el terminal"
+  spec.description = "Presentar diapositivas en el terminal"
   spec.homepage = "https://github.com/dvarrui/diamante"
   spec.required_ruby_version = ">= 3.2.0"
 
@@ -35,10 +36,12 @@ Gem::Specification.new do |spec|
   Dir.glob("lib/**/*", File::FNM_DOTMATCH) + ["LICENSE", "README.md"]
   spec.executables = %w[diamante]
   spec.require_paths = ["lib"]
+  spec.extra_rdoc_files = ["README.md", "LICENSE"] + Dir.glob(File.join("docs", "**", "*.md"))
 
   # Uncomment to register a new dependency of your gem
   # spec.add_dependency "example-gem", "~> 1.0"
   spec.add_dependency "thor", "~> 1.5"
+  spec.add_dependency "pastel", "~> 0.8"
   spec.add_dependency "kramdown", "~> 2.5"
 
   # For more information and examples about making a new gem, check out our
