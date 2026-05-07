@@ -8,9 +8,8 @@ module Diamante
     class Matrix
     
       def initialize(config)
-        @config = config # todo: elegible_chars
+        @config = config
         @pastel = Pastel.new
-        # @eligible_chars = "ª\|@·#$~%&/\¿¸^*¨;•:·_-+'.,".chars + ['.', ' ']
         @matrix_chars = @config[:chars].chars
         @term = ANSI.new
         @height = @term.height
