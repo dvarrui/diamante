@@ -5,7 +5,7 @@
   :chars: "!#$%&\\\/()*+,-.01:;<=>?@[]^_oO{}|ª·¿•xX "
 :fg:
   :scene: Slider
-  :files: "examples/demo.1/*.txt"
+  :files: "examples/1.demo/*.txt"
 :ui:
   :scene: UI
   :header: "Gema diamante"

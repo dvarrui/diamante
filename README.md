@@ -9,7 +9,7 @@ Presentar diapositivas en el temrinal.
 
 ## Modo de uso
 
-* Crear una carpeta con el fichero de configuración YAML y las diapositivas en ficheros de texto. [Ver ejemplo](./examples/yaml/).
+* Crear una carpeta con el fichero de configuración YAML y las diapositivas en ficheros de texto. [Ver ejemplo](./examples/01/).
 * Abrir un terminal.
 * Ejecutar `diamante show PATH/TO/CONFIG.yaml`.
 
