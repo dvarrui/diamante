@@ -2,7 +2,8 @@
   :bye: "Morpheus: 'Follow me.'"  
 :bg:
   :scene: Matrix
-  :chars: "ª\\|@·#$~%&\/¿¸^*¨;•:·_-+'., ."
+  # :chars: "!#$%&\()*+,-.0123456789:;<=>?@[]^_oO{}|ª·¿• "
+  :chars: "!#$%&\\\/()*+,-.01:;<=>?@[]^_oO{}|ª·¿•xX "
 :fg:
   :scene: Slider
   :files: "examples/yaml/*.txt"
