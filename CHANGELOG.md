@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+- Chore: reinit matrix scene when slide changes.
+
 ## [0.2.0] - 2026-05-07
 
 - Refactor config file content
