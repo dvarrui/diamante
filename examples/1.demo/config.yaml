@@ -4,7 +4,7 @@
   :scene: Matrix
   :chars: "!#$%&\\\/()*+,-.01:;<=>?@[]^_oO{}|ª·¿•xX "
 :fg:
-  :scene: Slider
+  :scene: Slides
   :files: "examples/1.demo/*.txt"
 :ui:
   :scene: UI

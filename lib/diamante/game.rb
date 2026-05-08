@@ -2,9 +2,7 @@
 
 require_relative "ansi"
 require_relative "config"
-require_relative "scenes/matrix"
-require_relative "scenes/slides"
-require_relative "scenes/ui"
+require_relative "scenes/scene_factory"
 
 module Diamante
   class Game
@@ -31,9 +29,10 @@ module Diamante
 
     def init
       ANSI.set_raw_mode
-      scene1 = Scene::Matrix.new(@config[:bg])
-      scene2 = Scene::Slides.new(@config[:fg])
-      scene3 = Scene::UI.new(@config[:ui], scene2)
+      scene1 = Scene::SceneFactory.create(@config[:bg])
+      scene2 = Scene::SceneFactory.create(@config[:fg])
+      scene3 = Scene::SceneFactory.create(@config[:ui])
+      scene3.slides = scene2
       @scenes = {
         bg: scene1,
         fg: scene2,

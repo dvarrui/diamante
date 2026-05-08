@@ -7,7 +7,9 @@ require_relative "slides"
 module Diamante
   module Scene
     class UI
-      def initialize(config, slides)
+      attr_accessor :slides
+
+      def initialize(config)
         @pastel = Pastel.new
     
         @header = config[:header]
