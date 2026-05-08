@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 require "pastel"
-require_relative "../ansi"
+require_relative "base"
 require_relative "slides"
+require_relative "../ansi"
 
 module Diamante
   module Scene
-    class UI
+    class UI < Base
       attr_accessor :slides
 
       def initialize(config)

@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 require "pastel"
+require_relative "base"
 require_relative "../ansi"
 
 module Diamante
   module Scene
-    class Matrix
+    class Matrix < Base
     
       def initialize(config)
         @config = config

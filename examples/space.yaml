@@ -1,0 +1,10 @@
+:game:
+  :bye: "Obiwan: '¡Que la fuerza de acompañe!'"  
+:bg:
+  :scene: Space
+:fg:
+  :scene: Slides
+  :files: "examples/data/*.txt"
+:ui:
+  :scene: UI
+  :header: "Gema diamante"

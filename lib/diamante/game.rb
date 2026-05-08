@@ -15,7 +15,7 @@ module Diamante
       begin
         init
         loop do
-          process
+          update
           render
           sleep 0.1
         end
@@ -40,7 +40,7 @@ module Diamante
       }
     end
 
-    def process
+    def update
       key = ANSI.pressed_key
           
       case key
@@ -54,6 +54,8 @@ module Diamante
         @scenes[:fg].next
       when :quit  then deinit
       end
+
+      @scenes.each_value { _1.update }
     end
 
     def render

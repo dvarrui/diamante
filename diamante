@@ -2,7 +2,7 @@
 
 $LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
 require "diamante/cli"
-# require "debug"
+require "debug"
 
 # Start command line interface
 CLI.start(ARGV)

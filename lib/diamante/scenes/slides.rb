@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 require "pastel"
+require_relative "base"
 require_relative "../ansi"
 
 module Diamante
   module Scene
-    class Slides
+    class Slides < Base
       attr_reader :index
     
       def initialize(config)
