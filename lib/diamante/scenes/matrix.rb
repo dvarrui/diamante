@@ -14,9 +14,13 @@ module Diamante
         @term = ANSI.new
         @height = @term.height
         @width = @term.width
-        @chars = {}
+        init
       end
       
+      def init
+        @chars = {}
+      end
+
       def render
         @chars[rand(@width)] = 0
     

@@ -47,8 +47,12 @@ module Diamante
       case key
       when :up    then puts "↑ Arriba"
       when :down  then puts "↓ Abajo"
-      when :left  then @scenes[:fg].prev
-      when :right then @scenes[:fg].next
+      when :left  then
+        @scenes[:bg].init
+        @scenes[:fg].prev
+      when :right then
+        @scenes[:bg].init
+        @scenes[:fg].next
       when :quit  then deinit
       end
     end
