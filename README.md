@@ -13,15 +13,16 @@ Presentar diapositivas en el terminal.
 $ diamante PATH/TO/CONFIG.yaml
 ```
 
-* Crear una carpeta con el fichero de configuración (YAML) y las diapositivas en ficheros de texto. [Ver ejemplo](./examples/1.demo/).
+* Crear una carpeta con el fichero de configuración (YAML) y las diapositivas en ficheros de texto. [Ver ejemplo](./examples/data/).
 
 ```bash
-examples/1.demo
+examples/data
 ├── 01.txt
 ├── 02.txt
-└── config.yaml
+├── 03.txt
+└── 04.txt
 ```
-* Ejecutar `diamante show examples/1.demo/config.yaml`.
+* Ejecutar `diamante show examples/matrix.yaml`.
 
 ![](./docs/example.png)
 
@@ -42,20 +43,23 @@ examples/1.demo
   :scene: Matrix
   :chars: "!#$%&\\\/()*+,-.01:;<=>?@[]^_oO{}|ª·¿•xX "
 :fg:
-  :scene: Slider
-  :files: "examples/1.demo/*.txt"
+  :scene: Slides
+  :files: "examples/data/*.txt"
 :ui:
   :scene: UI
   :header: "Gema diamante"
 ```
 
-Significado de los parámetros:
+* Significado de los parámetros de configuración:
 
 | Sección   | Parámetro   | Descripción          |
 | --------- | ----------- | -------------------- |
 | `:game`   | `:bye`      | Mensaje de despedida |
+| `:bg`     | `:scene`    | Escena de background |
 | `:bg`     | `:chars`    | Caracteres para el efecto Matrix |
+| `:fg`     | `:scene`    | Escena de foreground |
 | `:fg`     | `:files`    | Ficheros de texto con las diapositivas |
+| `:ui`     | `:scene`    | Escena del interfaz de usuario |
 | `:ui`     | `:header`   | Título de la presentación |
 
 ## Desarrollo
