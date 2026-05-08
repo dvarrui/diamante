@@ -1,6 +1,7 @@
 ## [Unreleased]
 
 - Chore: reinit matrix scene when slide changes.
+- Refactor: use SceneFactory.create().
 
 ## [0.2.0] - 2026-05-07
 
