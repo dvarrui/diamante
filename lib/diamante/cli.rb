@@ -13,6 +13,12 @@ class CLI < Thor
     exit 0
   end
 
+  map ["n", "-n", "--new"] => "new"
+  desc "new", "Create new project"
+  def new(dirpath)
+    Diamante.new(dirpath)
+  end
+
   map ["r", "-r", "--restart"] => "restart"
   desc "restart", "Restart ANSI terminal"
   def restart

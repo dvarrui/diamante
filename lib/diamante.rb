@@ -1,9 +1,14 @@
 # frozen_string_literal: true
 
 require_relative "diamante/md/markdown"
+require_relative "diamante/project"
 require_relative "diamante/version"
 
 module Diamante
+
+  def self.new(dirpath)
+    Project.new(dirpath)
+  end
 
   def self.show(filepath)
     if filepath.end_with? ".md"
