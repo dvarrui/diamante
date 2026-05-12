@@ -14,10 +14,11 @@ module Diamante
         FileUtils.cp(source_file, dirpath)
         puts "--> Create file : #{dirpath}/config.yaml"
       else
-        puts "Error: El archivo no existe en la ruta esperada: #{source_file}"
+        puts "[Project.new] No file!! #{source_file}"
       end
+      puts "... INFO: Customize the value of <fg/files> param!"
     rescue StandardError => e
-      puts "Error: #{e.message}"
+      puts "[Project.new] #{e.message}"
     end
   end
 end
