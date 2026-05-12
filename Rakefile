@@ -10,5 +10,11 @@ Rake::TestTask.new(:test) do |t|
 end
 
 require "standard/rake"
+require_relative "tasks/devel"
+
+desc "Help"
+task :help do
+  system("rake -T")
+end
 
 task default: %i[test standard]
