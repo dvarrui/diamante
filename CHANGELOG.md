@@ -1,5 +1,6 @@
-## [Unreleased]
+## [0.3.0]
 
+- ADD: Create new project skeleton.
 - Chore: reinit matrix scene when slide changes.
 - Refactor: use SceneFactory.create().
 
