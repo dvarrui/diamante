@@ -17,6 +17,11 @@ module Diamante
         @width = @term.width
 
         @files = Dir.glob(@config[:files])
+        if @files.empty?
+          ANSI.set_cooked_mode
+          warn "[ERROR] No slides! Revise config.yaml"
+          exit 1
+        end
         @index = 0
         load_slide
       end
@@ -53,8 +58,12 @@ module Diamante
   
       def load_slide
         @chars = {}
-        ANSI.clear_screen  
-        @slide = File.readlines(@files[@index])
+        ANSI.clear_screen
+        if @files[@index].nil?
+          @slide = "Undefined!"
+        else
+          @slide = File.readlines(@files[@index])
+        end
       end
     end  
   end
