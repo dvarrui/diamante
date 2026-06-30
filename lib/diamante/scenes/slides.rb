@@ -33,7 +33,7 @@ module Diamante
       def render
         lines = @slide
         row = (@height / 2) - (lines.size / 2)
-        max_with = lines.map(&:length).max
+        max_with = lines.map(&:length).max || 0
         col = (@width / 2) - (max_with / 2)
       
         lines.each_with_index do |text, index|

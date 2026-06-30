@@ -1,3 +1,7 @@
+## [0.3.2]
+
+- FIX: max_lines=0 for empty slide.
+
 ## [0.3.0]
 
 - ADD: Create new project skeleton.
